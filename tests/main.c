@@ -1,27 +1,55 @@
-#include "get_next_line.h"
+#include "../get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <limits.h>
 
-int main()
+int main(int argc, char **argv)
 {
-	int fd; //all file descirptor is represented by 
-	char *line;
+	int fd;
 	int ret;
+	int line_count;
+	char *line;
 
-	//open the file in read only mode
-	fd = open("test", O_RDONLY);
-
-	// iterate the 
-	while((ret = get_next_line(fd, &line)) > 0)
+	line_count = 1;
+	ret = 0;
+	line = NULL;
+	if (argc == 2)
 	{
-		printf("return=%d, line=%s\n", ret, line);
-		free(line);
+		fd = open(argv[1], O_RDONLY);
+
+		printf("\n");
+		printf("MAIN FD before %d \n", fd);
+		printf("MAIN RET before %d \n", ret);
+		printf("\n");
+		while ((ret = get_next_line(fd, &line)) > 0)
+		{
+			printf("[ MAIN while RET: %d] | A line has been read #%d => %s\n", ret, line_count, line);
+			line_count++;
+			free(line);
+		}
+		printf("\n");
+		printf("MAIN FD after %d \n", fd);
+		printf("MAIN RET after %d \n", ret);
+		printf("[MAIN Return: %d] AB line has been read #%d: %s\n", ret, line_count++, line);
+		printf("\n");
+		if (ret == -1)
+			printf("-----------\n MAIN ABn error happened\n");
+		else if (ret == 0)
+			printf("-----------\n MAIN EOF has been reached\n");
+		close(fd);
 	}
-
-	// Always print the end of the file
-	printf("return=%d, line=%s\n", ret, line);
-	free(line);
-
-	return(0);
+	if (argc == 1)
+	{
+		while ((ret = get_next_line(0, &line)) > 0)
+		{
+			printf("[Return: %d] Line #%d: %s\n", ret, line_count, line);
+			line_count++;
+		}
+		if (ret == -1)
+			printf("\nAn error happened\n");
+		else if (ret == 0)
+			printf("\nEOF has been reached\n");
+		close(fd);
+	}
+	return (0);
 }

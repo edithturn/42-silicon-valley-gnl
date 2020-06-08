@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 20:39:49 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/01 13:24:58 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/07 18:56:55 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ file descriptor, without the newline.
 
 
 #include "get_next_line.h"
+#include <stdio.h>
+
+void	ft_strdel(char **as)
+{
+	ft_memdel((void**)as);
+}
 
 char	*ft_strnew(size_t size){
 		return (ft_memalloc((size + 1 ) * sizeof(char)));
@@ -67,30 +73,41 @@ int ft_memdel(void **ptr)
 
 int		get_next_line(int fd, char **line)
 {
-	char				*buffer[BUFFER_SIZE + 1];
-	static		char	*file_descriptor[FD_SIZE];
+	//ssize_t to indicate  type signed (-1 example)
+	char				buffer[BUFFER_SIZE + 1];
+	static		char	*current_line[FD_SIZE];
 	char	*tmp;
 	ssize_t	r;
 
-	/* In case FD and Line will be NULL*/
-	if(fd < 0 || !line)
-		return (-1);
-	
-	while(r = read(fd, buffer, BUFFER_SIZE) > 0)
+	printf(" =>1 %s\n", current_line[fd]);
+	if(fd < 0 || (!current_line[fd] && !(current_line[fd] = ft_strnew(0))))
+	{
+		printf("%s\n", "NEVATIVE_VALUE");
+		return (NEVATIVE_VALUE);
+	}
+	printf(" =>2 %s\n", current_line[fd]);
+	while(!ft_strchr(current_line[fd], '\n') && (r = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[r]='\0';
-		tmp = file_descriptor[fd];
-		file_descriptor[fd] = ft_strjoin(file_descriptor[fd], buffer);
+		tmp = current_line[fd];
+		current_line[fd] = ft_strjoin(current_line[fd], buffer);
 		ft_memdel((void **)&tmp);
 	}
-	
-/*validar linea*/
+	if (r == NEVATIVE_VALUE)
+		return (NEVATIVE_VALUE);
+	else if (r > ZERO_VALUE)
+	{
+		printf("%s", "r > 0");
+		*line = ft_substr(current_line[fd], 0,  ft_strchr(current_line[fd], '\n') - current_line[fd]);
+	}
+	else // alloca memoria para cada linea
+		*line = ft_strdup(current_line[fd]);
 
-/*retornar value*/
-	if (r == 0)
-		r = 0;
+	current_line[fd] = ft_strdup(current_line[fd] + (ft_strlen(*line) + 1));
+	ft_memdel((void **)&tmp);
+
+	if(r == ZERO_VALUE)
+		return ZERO_VALUE;
 	else
-		r = 1;
-
-return (r);
+		return ONE_VALUE;
 }
