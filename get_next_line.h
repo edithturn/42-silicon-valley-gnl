@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 23:14:22 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/07 18:47:30 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/11 22:47:21 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *s);
-int	get_next_line(const int fd, char **line);
+char	*ft_strdup(const char *src);
+size_t	ft_strlen(const char *str);
 char	*ft_strnew(size_t size);
 void	*ft_memalloc(size_t size);
-void	*ft_memset(void *b, int c, size_t n);
-size_t	ft_strlen(const char *str);
-int ft_memdel(void **ptr);
-void	ft_strdel(char **as);
+void	*ft_memset(void *b, int c, size_t len);
+int		ft_memdel(void **ptr);
+int		get_next_line(int fd, char **line);
 
 #endif

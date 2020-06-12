@@ -6,108 +6,57 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 20:39:49 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/07 18:56:55 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/12 01:10:06 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+#include <stdio.h>
+
 /*
-**Description: Write a function which returns a line read from a
-file descriptor, without the newline.
+**Description: Write a function which returns a line read from a file descriptor, without the newline.
 **Parameters:
-**#1. file descriptor for reading
-**#2. The value of what has been read
+**1. file descriptor for reading
+**2. The value of what has been read
 **Return value:
 **1 : A line has been read
 **0 : EOF has been reached
 **-1 : An error happened
 */
 
-
-#include "get_next_line.h"
-#include <stdio.h>
-
-void	ft_strdel(char **as)
-{
-	ft_memdel((void**)as);
-}
-
-char	*ft_strnew(size_t size){
-		return (ft_memalloc((size + 1 ) * sizeof(char)));
-}
-
-void	*ft_memalloc(size_t size)
-{
-		void	*ptr;
-		ptr = malloc(size);
-		if(ptr == NULL)
-			return (NULL);
-		ft_memset(ptr, 0, size);
-		return (ptr);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	unsigned	char	*ub;
-
-	ub = (unsigned char *)b;
-	while (len > 0)
-	{
-		*ub = c;
-		len--;
-		ub++;
-	}
-	return (b);
-}
-
-int ft_memdel(void **ptr)
-{
-	if(*ptr)
-	{
-		ft_memset(*ptr, 0, ft_strlen(*ptr));
-		free(*ptr);
-		*ptr = NULL;
-		return (1);
-	}
-	return (0);
-}
-
 int		get_next_line(int fd, char **line)
 {
-	//ssize_t to indicate  type signed (-1 example)
-	char				buffer[BUFFER_SIZE + 1];
-	static		char	*current_line[FD_SIZE];
-	char	*tmp;
-	ssize_t	r;
+	char					buffer[BUFFER_SIZE + 1];
+	static		char		*current_line = NULL;
+	char					*tmp;
+	ssize_t					r;
+	int 						remaining;
 
-	printf(" =>1 %s\n", current_line[fd]);
-	if(fd < 0 || (!current_line[fd] && !(current_line[fd] = ft_strnew(0))))
+	if(fd < 0 || !line || BUFFER_SIZE <= 0)
+			return (-1);
+	if(current_line == NULL)
+		current_line = ft_strnew(0);
+	r = read(fd, buffer, BUFFER_SIZE);
+	while(!ft_strchr(current_line, '\n') && (r > 0))
 	{
-		printf("%s\n", "NEVATIVE_VALUE");
-		return (NEVATIVE_VALUE);
-	}
-	printf(" =>2 %s\n", current_line[fd]);
-	while(!ft_strchr(current_line[fd], '\n') && (r = read(fd, buffer, BUFFER_SIZE)) > 0)
-	{
+		printf("READED BITS %zu\n", r);
 		buffer[r]='\0';
-		tmp = current_line[fd];
-		current_line[fd] = ft_strjoin(current_line[fd], buffer);
+		tmp = current_line;
+		current_line = ft_strjoin(current_line, buffer);
 		ft_memdel((void **)&tmp);
 	}
-	if (r == NEVATIVE_VALUE)
-		return (NEVATIVE_VALUE);
-	else if (r > ZERO_VALUE)
+	if (r == -1)
+		return (-1);
+	else if (r > 0)
 	{
-		printf("%s", "r > 0");
-		*line = ft_substr(current_line[fd], 0,  ft_strchr(current_line[fd], '\n') - current_line[fd]);
+		remaining = ft_strchr(current_line, '\n') - current_line;
+		*line = ft_substr(current_line, 0, remaining);
 	}
-	else // alloca memoria para cada linea
-		*line = ft_strdup(current_line[fd]);
+	else
+		*line = ft_strdup(current_line);
 
-	current_line[fd] = ft_strdup(current_line[fd] + (ft_strlen(*line) + 1));
+	current_line = ft_strdup(current_line + (ft_strlen(*line) + 1));
 	ft_memdel((void **)&tmp);
 
-	if(r == ZERO_VALUE)
-		return ZERO_VALUE;
-	else
-		return ONE_VALUE;
+	return (r == 0 ? 0 : 1);
 }
