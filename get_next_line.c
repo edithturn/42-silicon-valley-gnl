@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 20:39:49 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/12 01:10:06 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/12 02:15:35 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		get_next_line(int fd, char **line)
 	}
 	else
 		*line = ft_strdup(current_line);
-
+	//move the pointer to the second line
 	current_line = ft_strdup(current_line + (ft_strlen(*line) + 1));
 	ft_memdel((void **)&tmp);
 
