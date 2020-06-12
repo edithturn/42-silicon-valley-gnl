@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 23:14:22 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/11 22:47:21 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/12 02:19:05 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
+#include <stdio.h>
 
 /* BUFFER_SIZE <= 4000 bytes */
 # ifndef BUFFER_SIZE
