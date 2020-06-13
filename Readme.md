@@ -9,7 +9,7 @@ static variables.
 
 ## Prototype
 ```c
-	int		get_next_line(int fd, char **line);
+int	get_next_line(int fd, char **line);
 ```
 ## Compilation
 
@@ -20,12 +20,10 @@ as the buffer size for the read calls in your get_next_line.
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 ```
 
-## Compilation with main
+With Main
 
-```bash
-cd test
-```
 ```c
+cd test
 gcc main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c
 ```
 
@@ -38,19 +36,19 @@ Lets look the loop in the main:
 
 ```c
 if (argc == 2)
+{
+	fd = open(argv[1], O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		fd = open(argv[1], O_RDONLY);
-		while ((ret = get_next_line(fd, &line)) > 0)
-		{
-			printf("[ MAIN while RET: %d] | A line has been read #%d => %s\n", ret, line_count, line);
-			line_count++;
-			free(line);
-		}
-		if (ret == -1)
-			printf("-----------\n MAIN An error happened\n");
-		else if (ret == 0)
-			printf("-----------\n MAIN EOF has been reached\n");
-		close(fd);
+		printf("[ MAIN while RET: %d] | A line has been read #%d => %s\n", ret, line_count, line);
+		line_count++;
+		free(line);
+	}
+	if (ret == -1)
+		printf("-----------\n MAIN An error happened\n");
+	else if (ret == 0)
+		printf("-----------\n MAIN EOF has been reached\n");
+	close(fd);
 	}
 ```
 
@@ -80,7 +78,7 @@ read(STDIN_FILENO, buffer, 20);
 
 Note.: remember read() doesn't add '\0' to terminate to make it string (just gives raw buffer).
 
-Some Basic Concepts
+## Some Basic Concepts
 
 In fact, the C language treats all file streams equally, although some of the file streams may come from a disk or tape drive, from a terminal, or even from a printer.
 
