@@ -85,4 +85,4 @@ In fact, the C language treats all file streams equally, although some of the fi
 Additionally, in C, there are three file streams that are pre-opened for you:
 - stdin: The standard input for reading.
 - stdout: The standard output for writing.
-- stderr;The standard error for writing error messages.
+- stderr:The standard error for writing error messages.
