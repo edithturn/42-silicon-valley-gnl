@@ -63,7 +63,7 @@ The normal return value from open is a non-negative integer file descriptor. In 
 #include <unistd.h>
 ssize_t read(int fd, void *buf, size_t count);
 ```
-Input parameters:
+**Input parameters:**
 - int fd file descriptor is an integer and not a file pointer. The file descriptor for stdin is 0
 - void *buf pointer to buffer to store characters read by the read function
 - size_t count maximum number of characters to read
@@ -83,6 +83,6 @@ Note.: remember read() doesn't add '\0' to terminate to make it string (just giv
 In fact, the C language treats all file streams equally, although some of the file streams may come from a disk or tape drive, from a terminal, or even from a printer.
 
 Additionally, in C, there are three file streams that are pre-opened for you:
-- stdin–The standard input for reading.
-- stdout–The standard output for writing.
-- stderr–The standard error for writing error messages.
+- stdin: The standard input for reading.
+- stdout: The standard output for writing.
+- stderr;The standard error for writing error messages.
