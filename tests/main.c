@@ -17,23 +17,19 @@ int main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY);
 
-		printf("\n");
-		printf("MAIN FD before %d \n", fd);
-		printf("MAIN RET before %d \n", ret);
-		printf("\n");
+		// Reads from a file
 		while ((ret = get_next_line(fd, &line)) > 0)
 		{
 			printf("[ MAIN while RET: %d] | A line has been read #%d => %s\n", ret, line_count, line);
 			line_count++;
 			free(line);
 		}
+
 		printf("\n");
-		printf("MAIN FD after %d \n", fd);
-		printf("MAIN RET after %d \n", ret);
-		printf("[MAIN Return: %d] AB line has been read #%d: %s\n", ret, line_count++, line);
+		printf("[MAIN Return: %d] A line has been read #%d: %s\n", ret, line_count++, line);
 		printf("\n");
 		if (ret == -1)
-			printf("-----------\n MAIN ABn error happened\n");
+			printf("-----------\n MAIN An error happened\n");
 		else if (ret == 0)
 			printf("-----------\n MAIN EOF has been reached\n");
 		close(fd);
