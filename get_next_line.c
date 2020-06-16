@@ -6,12 +6,11 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 20:39:49 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/12 02:15:35 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/15 16:39:46 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 /*
 **Description: Write a function which returns a line read from a file descriptor, without the newline.
@@ -36,10 +35,8 @@ int		get_next_line(int fd, char **line)
 			return (-1);
 	if(current_line == NULL)
 		current_line = ft_strnew(0);
-	r = read(fd, buffer, BUFFER_SIZE);
-	while(!ft_strchr(current_line, '\n') && (r > 0))
+	while(!ft_strchr(current_line, '\n') && (r = read(fd, buffer, BUFFER_SIZE) > 0))
 	{
-		printf("READED BITS %zu\n", r);
 		buffer[r]='\0';
 		tmp = current_line;
 		current_line = ft_strjoin(current_line, buffer);
@@ -49,12 +46,11 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	else if (r > 0)
 	{
-		remaining = ft_strchr(current_line, '\n') - current_line;
+ 		remaining = ft_strchr(current_line, '\n') - current_line;
 		*line = ft_substr(current_line, 0, remaining);
 	}
 	else
 		*line = ft_strdup(current_line);
-	//move the pointer to the second line
 	current_line = ft_strdup(current_line + (ft_strlen(*line) + 1));
 	ft_memdel((void **)&tmp);
 
