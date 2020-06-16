@@ -86,3 +86,46 @@ Additionally, in C, there are three file streams that are pre-opened for you:
 - stdin: The standard input for reading.
 - stdout: The standard output for writing.
 - stderr:The standard error for writing error messages.
+
+
+## Valgrind
+
+Install
+```bash
+sudo apt-get update -y
+sudo apt-get install -y valgrind
+```
+
+Use
+```bash
+gcc main.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line.c ../get_next_line_utils.c
+valgrind --leak-check=yes ./a.out 01_test_with_file
+```
+
+
+## Debug with GUI
+```bash
+gcc -g main.c -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line.c ../get_next_line_utils.c
+
+lldb a.out
+
+b get_next_line
+
+run 01_test_with_file
+
+gui
+
+# keys
+
+h
+s
+tab
+directional key
+```
+
+
+## References
+
+https://valgrind.org/docs/manual/quick-start.html
+
+

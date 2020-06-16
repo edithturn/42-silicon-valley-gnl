@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/24 23:14:22 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/12 02:19:05 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/16 11:17:32 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *src);
+char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *str);
 char	*ft_strnew(size_t size);
 void	*ft_memalloc(size_t size);

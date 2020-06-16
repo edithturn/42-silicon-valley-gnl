@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 15:49:10 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/11 22:22:31 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/16 11:17:21 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(const char *s1)
 {
-	int		i;
-	int		j;
-	char	*dest;
+	char	*new;
+	ssize_t	i;
 
-	i = 0;
-	j = 0;
-	while (src[i] != '\0')
-		i++;
-	dest = (char*)malloc(sizeof(*src) * (i + 1));
-	if (dest == NULL)
+	new = ft_strnew(ft_strlen(s1));
+	if (new == NULL)
 		return (NULL);
-	while (src[j] != '\0')
-	{
-		dest[j] = src[j];
-		j++;
-	}
-	dest[j] = '\0';
-	return (dest);
+	i = -1;
+	while (s1[++i])
+		new[i] = s1[i];
+	return (new);
 }
 
 size_t	ft_strlen(const char *str)
@@ -101,8 +93,8 @@ size_t	ft_strlen(const char *str)
 	ptr = str;
 	while(*ptr)
 	{
-		ptr++;
-		count++;
+		++ptr;
+		++count;
 	}
 	return (count);
 }
