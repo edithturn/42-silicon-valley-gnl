@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/23 20:39:49 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/16 12:21:39 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/16 21:58:52 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int		get_next_line(int fd, char **line)
 	}
 	if (r == -1)
 		return (-1);
-	else if (r > 0)
+	if (r > 0)
 	{
  		remaining = ft_strchr(current_line, '\n') - current_line;
 		*line = ft_substr(current_line, 0, remaining);
 	}
-	else if (!*(tmp = current_line))
-		return (*(*line = ft_strnew(0)));
 	else
 		*line = ft_strdup(current_line);
+	
 	current_line = ft_strdup(current_line + (ft_strlen(*line) + 1));
-	ft_memdel((void **)&tmp);
-
-	return (r == 0 ? 0 : 1);
+	//ft_memdel((void **)&tmp);
+	
+	return (r == 0 ? 0 * ft_memdel((void **)&current_line) : 1);
+	//return (r == 0 ? 0 : 1);
 }
