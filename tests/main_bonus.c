@@ -1,25 +1,42 @@
-#include "../get_next_line.h"
+#include "../get_next_line_bonus.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <limits.h>
 
 int main()
 {
-	int fd01, fd02;
+	int fd01, fd02, fd03;
 	char *line = NULL;
 
-	fd01 = open("01_test_with_file", O_RDONLY);
-	fd02 = open("02_test_with_file", O_RDONLY);
+	fd01 = open("bonus_test01_with_file", O_RDONLY);
+	fd02 = open("bonus_test02_with_file", O_RDONLY);
+	fd03 = open("bonus_test03_with_file", O_RDONLY);
 
 	//FD 01
-	printf("\\First Line FD01\\\n");
-	printf("%d\n", get_next_line(fd01, &line));
+	printf("FD01 | First Line | FD return %d\n", get_next_line(fd01, &line));
 	printf("%s\n\n", line);
 	free(line);
 
 	//FD02
-	printf("\\First Line FD02\\\n");
-	printf("%d\n", get_next_line(fd02, &line));
+	printf("FD02 | First Line | FD return %d\n", get_next_line(fd02, &line));
+	printf("%s\n\n", line);
+	free(line);
+
+	//FD03
+	printf("FD03 | First Line | FD return %d\n", get_next_line(fd03, &line));
+	printf("%s\n\n", line);
+	free(line);
+
+	//FD01 Seconda Line
+	printf("FD01 | Second Line | FD return %d\n", get_next_line(fd01, &line));
+	printf("%s\n\n", line);
+	free(line);
+
+	//FD03 Second Line
+	printf("FD03 | Second Line | FD return %d\n", get_next_line(fd03, &line));
+	printf("%s\n\n", line);
+	free(line);
+	printf("FD03 | Third Line | FD return %d\n", get_next_line(fd03, &line));
 	printf("%s\n\n", line);
 	free(line);
 }
