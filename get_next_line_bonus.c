@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/18 00:26:39 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/18 09:36:03 by epuclla          ###   ########.fr       */
+/*   Created: 2020/06/18 00:25:56 by epuclla           #+#    #+#             */
+/*   Updated: 2020/06/18 10:13:35 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 **Description: Write a function which returns
@@ -22,6 +22,14 @@
 **1 : A line has been read
 **0 : EOF has been reached
 **-1 : An error happened
+** BONUS:
+** To succeed get_next_line with a single static variable.
+** • To be able to manage multiple file descriptor with
+** your get_next_line. For example, if the file
+** descriptors 3, 4 and 5 are accessible for reading,
+** then you can call get_next_line once on 3,
+** once on 4, once again on 3 then once on 5 etc. without
+** losing the reading thread on each of the descriptors.
 */
 
 char	*ft_strdup(const char *s1)
@@ -100,26 +108,26 @@ int		get_next_line(int fd, char **line)
 {
 	ssize_t		r;
 	char		bf[BUFFER_SIZE + (r = 1)];
-	static char	*c_line = NULL;
+	static char	*lr[FD_SIZE];
 	char		*tmp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (c_line == NULL)
-		c_line = ft_strnew(0);
-	while (!ft_strchr(c_line, '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
+	if (lr[fd] == NULL)
+		lr[fd] = ft_strnew(0);
+	while (!ft_strchr(lr[fd], '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
 	{
 		bf[r] = '\0';
-		tmp = c_line;
-		c_line = ft_strjoin(c_line, bf);
+		tmp = lr[fd];
+		lr[fd] = ft_strjoin(lr[fd], bf);
 		ft_memdel((void **)&tmp);
 	}
 	if (r == 0)
-		*line = ft_strdup(c_line);
+		*line = ft_strdup(lr[fd]);
 	else if (r > 0)
-		*line = ft_substr(c_line, 0, (ft_strchr(c_line, '\n') - c_line));
+		*line = ft_substr(lr[fd], 0, (ft_strchr(lr[fd], '\n') - lr[fd]));
 	else
 		return (-1);
-	c_line = ft_strdup(c_line + (ft_strlen(*line) + 1));
-	return (r == 0 ? 0 * ft_memdel((void **)&c_line) : 1);
+	lr[fd] = ft_strdup(lr[fd] + (ft_strlen(*line) + 1));
+	return (r == 0 ? 0 * ft_memdel((void **)&lr[fd]) : 1);
 }

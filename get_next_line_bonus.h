@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/24 23:14:22 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/18 00:32:54 by epuclla          ###   ########.fr       */
+/*   Created: 2020/06/18 00:26:24 by epuclla           #+#    #+#             */
+/*   Updated: 2020/06/18 00:32:02 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,6 +19,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4000
+# endif
+
+# ifndef FD_SIZE
+#  define FD_SIZE 65535
 # endif
 
 char	*ft_strchr(const char *s, int c);
