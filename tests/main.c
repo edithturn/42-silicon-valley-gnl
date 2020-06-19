@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 			printf("-----------\n An error happened\n");
 		else if (ret == 0)
 		{
-			//free(line);
+			free(line);
 			printf("-----------\n EOF has been reached\n");
 		}
 		close(fd);
