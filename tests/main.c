@@ -30,7 +30,10 @@ int main(int argc, char **argv)
 		if (ret == -1)
 			printf("-----------\n An error happened\n");
 		else if (ret == 0)
+		{
+			//free(line);
 			printf("-----------\n EOF has been reached\n");
+		}
 		close(fd);
 	}
 	if (argc == 1)
