@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 00:26:39 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/18 09:36:03 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/19 11:43:08 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 **-1 : An error happened
 */
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *str)
 {
 	char	*new;
 	ssize_t	i;
 
-	new = ft_strnew(ft_strlen(s1));
+	new = ft_strnew(ft_strlen(str));
 	if (new == NULL)
 		return (NULL);
 	i = -1;
-	while (s1[++i])
-		new[i] = s1[i];
+	while (str[++i])
+		new[i] = str[i];
 	return (new);
 }
 
@@ -110,9 +110,12 @@ int		get_next_line(int fd, char **line)
 	while (!ft_strchr(c_line, '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
 	{
 		bf[r] = '\0';
-		tmp = c_line;
-		c_line = ft_strjoin(c_line, bf);
-		ft_memdel((void **)&tmp);
+		tmp = ft_strjoin(c_line, bf);
+		ft_memdel((void **)&c_line);
+		c_line = tmp;
+		//tmp = c_line;
+		//c_line = ft_strjoin(c_line, bf);
+		//ft_memdel((void **)&tmp);
 	}
 	if (r == 0)
 		*line = ft_strdup(c_line);
@@ -120,6 +123,8 @@ int		get_next_line(int fd, char **line)
 		*line = ft_substr(c_line, 0, (ft_strchr(c_line, '\n') - c_line));
 	else
 		return (-1);
-	c_line = ft_strdup(c_line + (ft_strlen(*line) + 1));
+	tmp = ft_strdup(c_line + (ft_strlen(*line) + 1));
+	ft_memdel((void **)&c_line);
+	c_line = tmp;
 	return (r == 0 ? 0 * ft_memdel((void **)&c_line) : 1);
 }

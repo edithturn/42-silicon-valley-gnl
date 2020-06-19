@@ -99,7 +99,9 @@ sudo apt-get install -y valgrind
 Use
 ```bash
 gcc main.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line.c ../get_next_line_utils.c
-valgrind --leak-check=yes ./a.out 01_test_with_file
+valgrind --leak-check=yes ./a.out mp_test01_with_file
+
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./a.out
 ```
 
 
