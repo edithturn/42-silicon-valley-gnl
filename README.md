@@ -188,12 +188,12 @@ b get_next_line
 run files/part1_test01_with_lines
 gui
 ```
-** :flashlight: keys to move**
+**:flashlight: keys to move**
 
-- tab : change window
-- s : next line
-- directional key : variables navigation
-- h : help
+- **tab** : change window
+- **s** : next line
+- **directional key** : variables navigation
+- **h** : help
 
 ![alt text](img/lldb_gui.png)
 
