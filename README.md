@@ -1,65 +1,78 @@
-## Get Next Line
+# Get Next Line (GNL)  :tractor:
 
-The aim of this project is to make you code a function that returns a line
-ending with a newline, read from a file descriptor.
+The aim of this project is to make you code a function that **returns a line
+ending with a newline, read from a file descriptor.**
 
 This project will not only allow you to add a very convenient function to your collection,
-but it will also allow you to learn a highly interesting new concept in C programming:
-static variables.
+but it will also allow you to learn a highly interesting new concept in **C programming:**
+**"static variables"**
 
-## Prototype
+### Function Prototype
 ```c
 int	get_next_line(int fd, char **line);
 ```
-## Compilation
+### Compilation
 
+**GNL Mandatory Part**
 Your program must compile with the flag -D BUFFER_SIZE=xx. which will be used
 as the buffer size for the read calls in your get_next_line.
 
-```c
-gcc main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c
+Make sure that your function behaves well when it reads from a file and when it
+reads from the standard input.
 
-./a.out files/test01_with_lines 
+Locate in the **42-silicon-valley-libft/test** folder.
+
+**GNL with files**
+```bash
+gcc main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c  -I ../
+
+./a.out files/part1_test01_with_lines
 ```
 
-With Main
+**GNL with standard input (stdin)**
+```bash
+gcc main_stdin.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c -I ../
 
-```c
-cd test
-gcc main.c  -g -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c
+./a.out
 ```
 
-### Points to understand in Get next Line
+**GNL Bonus Part**
+```bash
+gcc main_bonus.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line_bonus.c ../get_next_line_utils_bonus.c -I ../
 
-According to our LNG subject
-"Calling your function get_next_line in a loop will then allow you to read the text
+./a.out
+```
+
+### Points to understand in GNL
+
+According to our GNL subject "Calling your function get_next_line in a loop will then allow you to read the text
 available on a file descriptor one line at a time until the EOF." 
-Lets look the loop in the main:
+Our GNL call seen from the main:
 
 ```c
-if (argc == 2)
-{
-	fd = open(argv[1], O_RDONLY);
+fd = open(argv[1], O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		printf("[ MAIN while RET: %d] | A line has been read #%d => %s\n", ret, line_count, line);
+		printf(" \n [ Return: %d ] | A line has been read #%d => %s\n", ret, line_count, line);
 		line_count++;
 		free(line);
 	}
-	if (ret == -1)
-		printf("-----------\n MAIN An error happened\n");
-	else if (ret == 0)
-		printf("-----------\n MAIN EOF has been reached\n");
-	close(fd);
-	}
 ```
 
-Lets see this line to open the file:
+This line will return an integer that will be used as a parameter for the **get_next_line** function.
 ```c
 fd = open(argv[1], O_RDONLY);
 ```
+Our **get_next_line** function will return an integer that will be taken to evaluate all the lines until the file ends.
 
-The normal return value from open is a non-negative integer file descriptor. In the case of an error, a value of -1 is returned instead.
+### Return value
+ | Number | Description         |
+ |-----------|----------------------|
+ | 1 | A line has been read |
+ | 0 | EOF has been reached |
+ | -1 | An error happened |
+
+
 
 ```c
 #include <unistd.h>
@@ -150,6 +163,8 @@ source ~/.profile
 
 Test Bonus Part
 
-gcc main_bonus.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
 
 
+
+
+![alt text](img/tests.png)

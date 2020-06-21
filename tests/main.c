@@ -5,9 +5,7 @@
 
 int main(int argc, char **argv)
 {
-	int fd;
-	int ret;
-	int line_count;
+	int fd, ret, line_count;
 	char *line;
 
 	line_count = 1;
@@ -16,23 +14,20 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-
-		// Reads from a file
 		while ((ret = get_next_line(fd, &line)) > 0)
 		{
 			printf(" \n [ Return: %d ] | A line has been read #%d => %s\n", ret, line_count, line);
 			line_count++;
 			free(line);
 		}
-
 		printf(" \n [ Return: %d ] A line has been read #%d: %s\n", ret, line_count++, line);
 		printf("\n");
 		if (ret == -1)
 			printf("-----------\n An error happened\n");
 		else if (ret == 0)
 		{
-			free(line);
 			printf("-----------\n EOF has been reached\n");
+			free(line);
 		}
 		close(fd);
 	}
