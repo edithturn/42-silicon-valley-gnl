@@ -118,7 +118,7 @@ read(fd, buffer, 20);
 **:traffic_light: Note.:** remember read() doesn't add '\0' to terminate to make it string (just gives raw buffer).
 
 
-### Funciones Utiliizadas
+### Functions Used
 
 **External Functions**
 
@@ -128,7 +128,7 @@ read(fd, buffer, 20);
  |  malloc() | EOF has been reached |
  |  free() | An error happened |
 
-**Functions Used**
+**Utility Functions**
 
  | Function | Description         |
  |-----------|----------------------|
