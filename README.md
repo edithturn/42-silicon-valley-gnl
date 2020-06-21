@@ -128,17 +128,17 @@ read(fd, buffer, 20);
  |  malloc() | EOF has been reached |
  |  free() | An error happened |
 
-**Util Functions**
+**Functions Used**
 
  | Function | Description         |
  |-----------|----------------------|
- |  ft_strnew() | A line has been read |
- |  ft_strchr() | EOF has been reached |
- |  ft_strjoin() | An error happened |
+ |  ft_strnew() | use size as the size for a new string product of memalloc, this will return the new string, after assigning '' 0 "as elements of the string. |
+ |  ft_strchr() | The  strchr() function returns a pointer to the first occurrence of the character c in the string s. |
+ |  ft_strjoin() | locates (with malloc(3)) and returns a new string, which is the result of the concatenation of 's1' and 's2'. |
  |  ft_memdel() | A line has been read |
- |  ft_strdup() | EOF has been reached |
- |  ft_substr | An error happened |
- |  ft_strlen | An error happened |
+ |  ft_strdup() | returns a pointer to a  new  string  which  is  a duplicate  of the string s. |
+ |  ft_substr | Allocates (with malloc(3)) and returns a substring from the string 's'. |
+ |  ft_strlen |  calculates the length of the string s, excluding the terminating null byte ('\0') |
 
 
 ## Testers
@@ -203,6 +203,7 @@ gui
 Use and install this repository: 
 - [ Norminette ](https://github.com/42sp/norminette-client.git)
 
+**Run**
 ```bash
 norminette *.*
 ```
