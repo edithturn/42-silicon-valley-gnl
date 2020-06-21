@@ -198,12 +198,17 @@ gui
 ![alt text](img/lldb_gui.png)
 
 
-### Norminette
+## Norminette
 
 Use and install this repository: 
-- [ Norminette ](https://github.com/42sp/norminette-client.git)
+[ Norminette ](https://github.com/42sp/norminette-client.git)
 
 **Run**
 ```bash
 norminette *.*
 ```
+
+### GNL pdf  new curriculum
+[Download from HERE](https://drive.google.com/file/d/1Dg5NWIZD0WmaiNZEp0-DjIkD22Og3e4A/view?usp=sharing)
+ 
+
