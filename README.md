@@ -134,10 +134,10 @@ read(fd, buffer, 20);
  |-----------|----------------------|
  |  ft_strnew() | use size as the size for a new string product of memalloc, this will return the new string, after assigning '' 0 "as elements of the string. |
  |  ft_strchr() | The  strchr() function returns a pointer to the first occurrence of the character c in the string s. |
- |  ft_strjoin() | locates (with malloc(3)) and returns a new string, which is the result of the concatenation of 's1' and 's2'. |
+ |  ft_strjoin() | locates with malloc and returns a new string, which is the result of the concatenation of 's1' and 's2'. |
  |  ft_memdel() | A line has been read |
  |  ft_strdup() | returns a pointer to a  new  string  which  is  a duplicate  of the string s. |
- |  ft_substr | Allocates (with malloc(3)) and returns a substring from the string 's'. |
+ |  ft_substr | Allocates with malloc and returns a substring from the string 's'. |
  |  ft_strlen |  calculates the length of the string s, excluding the terminating null byte ('\0') |
 
 
