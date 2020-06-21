@@ -115,7 +115,7 @@ char buffer[20];
 read(fd, buffer, 20);
 ```
 
-:traffic_light: Note.: remember read() doesn't add '\0' to terminate to make it string (just gives raw buffer).
+**:traffic_light: Note.:** remember read() doesn't add '\0' to terminate to make it string (just gives raw buffer).
 
 
 ### Funciones Utiliizadas
@@ -124,9 +124,9 @@ read(fd, buffer, 20);
 
   | Function | Description         |
  |-----------|----------------------|
- |  read | A line has been read |
- |  malloc | EOF has been reached |
- |  free | An error happened |
+ |  read() | A line has been read |
+ |  malloc() | EOF has been reached |
+ |  free() | An error happened |
 
 **Util Functions**
 
@@ -134,26 +134,26 @@ read(fd, buffer, 20);
  |-----------|----------------------|
  |  ft_strnew() | A line has been read |
  |  ft_strchr() | EOF has been reached |
- |  ft_strjoin | An error happened |
+ |  ft_strjoin() | An error happened |
  |  ft_memdel() | A line has been read |
  |  ft_strdup() | EOF has been reached |
  |  ft_substr | An error happened |
  |  ft_strlen | An error happened |
 
 
-## TESTERS
+## Testers
 
 ### 42TESTERS-GNL
- :point_right: Locate in the **42-silicon-valley-gnl** folder. 
+ :point_right: Locate in the **42-silicon-valley-gnl** folder
 
 ```bash
-gt clone https://github.com/Mazoise/42TESTERS-GNL.git
+git clone https://github.com/Mazoise/42TESTERS-GNL.git
 cd 42TESTERS-GNL
 ./all_tests.sh
 ./all_tests_with_bonus.sh
 ```
 
-### Valgrind
+### VALGRIND
 
 **Installation**
 ```bash
@@ -168,7 +168,9 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 ```
 ![alt text](img/valgrind_output.png)
 
-### Fsanitize
+**:information_source:** [ know more about valgrind ](https://valgrind.org/docs/manual/quick-start.html)
+
+### FSANITIZE
 
 ```bash
 gcc main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c -I ../
@@ -186,18 +188,14 @@ b get_next_line
 run files/part1_test01_with_lines
 gui
 ```
-![alt text](img/lldb_gui.png)
-
-**keys to move**
+** :flashlight: keys to move**
 
 - tab : change window
 - s : next line
 - directional key : variables navigation
 - h : help
 
-## References
-
-https://valgrind.org/docs/manual/quick-start.html
+![alt text](img/lldb_gui.png)
 
 
 ### Norminette
