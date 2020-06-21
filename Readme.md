@@ -18,6 +18,8 @@ as the buffer size for the read calls in your get_next_line.
 
 ```c
 gcc main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c
+
+./a.out files/test01_with_lines 
 ```
 
 With Main
@@ -129,5 +131,25 @@ directional key
 ## References
 
 https://valgrind.org/docs/manual/quick-start.html
+
+
+### Norminette
+https://github.com/42sp/norminette-client
+
+```bash
+sudo apt-get install ruby ruby-bundler ruby-dev build-essential
+git clone https://github.com/42sp/norminette-client.git ~/.norminette/
+cd ~/.norminette/
+bundle
+```
+
+```bash
+echo 'alias norminette="~/.norminette/norminette.rb"' >> ~/.profile
+source ~/.profile
+```
+
+Test Bonus Part
+
+gcc main_bonus.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
 
 

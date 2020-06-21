@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 00:25:56 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/18 10:13:35 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/20 23:02:01 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,13 @@ int		get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (lr[fd] == NULL)
-		lr[fd] = ft_strnew(0);
+	lr[fd] == NULL ? lr[fd] = ft_strnew(0) : NULL;
 	while (!ft_strchr(lr[fd], '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
 	{
 		bf[r] = '\0';
-		tmp = lr[fd];
-		lr[fd] = ft_strjoin(lr[fd], bf);
-		ft_memdel((void **)&tmp);
+		tmp = ft_strjoin(lr[fd], bf);
+		ft_memdel((void **)&lr[fd]);
+		lr[fd] = tmp;
 	}
 	if (r == 0)
 		*line = ft_strdup(lr[fd]);
@@ -128,6 +127,8 @@ int		get_next_line(int fd, char **line)
 		*line = ft_substr(lr[fd], 0, (ft_strchr(lr[fd], '\n') - lr[fd]));
 	else
 		return (-1);
-	lr[fd] = ft_strdup(lr[fd] + (ft_strlen(*line) + 1));
+	tmp = ft_strdup(lr[fd] + (ft_strlen(*line) + ((r > 0) ? +1 : +0)));
+	ft_memdel((void **)&lr[fd]);
+	lr[fd] = tmp;
 	return (r == 0 ? 0 * ft_memdel((void **)&lr[fd]) : 1);
 }
