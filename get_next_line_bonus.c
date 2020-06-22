@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 00:25:56 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/20 23:02:01 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/06/21 19:10:29 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 **1 : A line has been read
 **0 : EOF has been reached
 **-1 : An error happened
-** BONUS:
-** To succeed get_next_line with a single static variable.
-** • To be able to manage multiple file descriptor with
-** your get_next_line. For example, if the file
-** descriptors 3, 4 and 5 are accessible for reading,
-** then you can call get_next_line once on 3,
-** once on 4, once again on 3 then once on 5 etc. without
-** losing the reading thread on each of the descriptors.
+**BONUS:
+**To succeed get_next_line with a single static variable.
+**To be able to manage multiple file descriptor with
+**your get_next_line. For example, if the file
+**descriptors 3, 4 and 5 are accessible for reading,
+**then you can call get_next_line once on 3,
+**once on 4, once again on 3 then once on 5 etc. without
+**losing the reading thread on each of the descriptors.
 */
 
 char	*ft_strdup(const char *s1)

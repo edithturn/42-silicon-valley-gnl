@@ -1,0 +1,24 @@
+#TODO
+Process GNL
+1. check if fd < 0, si linea tiene contenido y si BUFFER_SIZE es <= 0. 
+Si todo esto es verdadero, devuelve (-1)
+2. Validate if the c_line (current line) is null, if is alloca memory and return an empy string.
+	2.1 The first time when calll get_next_line, c_line is NULL.
+3. The while loop, has two validations. Both have to be true to enter to the while.
+	3.1.	r = read(fd, bf, BUFFER_SIZE)) > 0
+			Lee una cantidad de BUFFER_SIZE del file descriptor ingresado en el main (fd), y lo almacena en un buffer (bf). 
+	3.2. ft_strchr(c_line, '\n') 
+			buscamos la existencia de un salto de linea "\n" en c_line. La primera vez c_line esta vacía, por lo que al buscar una nueva linea devolverá null.
+	3.3. Mientras no tenga un salto de linea '\n' and hayamos leído algo, entonces hace:
+		3.3.1. fill last char of bf[r] with '\0' (r tendra el valor entero de los bytes leidos)
+		3.3.2. Almacena en tmp la concatenación de de c_line y la cantidad de bytes leídos, lo retornara en un nuevo string.
+		3.3.4. Eliminar la memoria del puntero c_line, sino hacemos esto c_line seguirá apuntando a un string sin valor (perdida de memoria)
+		3.3.5. c_line esta liberado, entonces podemos guardar el resultado del strjoin.
+4. if (r == 0),  Si la cantidad de bytes leídos es zero, quiere decir que posiblemete el contenido este vacío, 
+		entonces, allocamos memoria y devolvemos un nuevo string que será alamcenado en *line.
+5. else if (r > 0), Si la cantidad de bytes leídos es mayor a zero, entonces creamos un substring de la linea hasta antes de un salto de linea.
+6. else, return (-1), exit the programar, bcz error reading.
+7. Si hay contenido en la linea o la linea esta vacía, luego reservamos memoria para un string del tamaño de linea, sumamos 1 si r > 0 (sumanos uno solo si es una nueva linea).
+8. Liberamos memoria de c_line
+9. Asignamos a c_line el valor de tmp.
+10. Retornamos 0 y limpiamos c_line si ya no hay mas que leer, de lo contrario retornamos 1 para seguir evaluando las siguientes lineas.
