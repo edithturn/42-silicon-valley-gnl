@@ -144,6 +144,7 @@ read(fd, buffer, 20);
 ## Testers
 
 ### 42TESTERS-GNL
+Author: **Mazoise**
  :point_right: Locate in the **42-silicon-valley-gnl** folder
 
 ```bash
@@ -181,11 +182,11 @@ gcc main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get
 
 ## Other testers
 
-	[ GNL_lover ]( https://github.com/charMstr/GNL_lover.git )  **charMstr**
+[ GNL_lover ](https://github.com/charMstr/GNL_lover.git) **charMstr**
 
-	[ gnlkiller ]( https://github.com/DontBreakAlex/gnlkiller.git )  **DontBreakAlex**
+[ gnlkiller ](https://github.com/DontBreakAlex/gnlkiller.git) **DontBreakAlex**
 
-	[ gnlkiller2 ]( https://github.com/Sherchryst/gnlkiller.git ) **Sherchryst**
+[ gnlkiller2 ](https://github.com/Sherchryst/gnlkiller.git) **Sherchryst**
 
 ## Debug with lldb and GUI
 ```bash
