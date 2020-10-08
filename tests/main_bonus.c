@@ -8,9 +8,9 @@ int main()
 	int fd01, fd02, fd03;
 	char *line = NULL;
 
-	fd01 = open("bonus_test01_with_file", O_RDONLY);
-	fd02 = open("bonus_test02_with_file", O_RDONLY);
-	fd03 = open("bonus_test03_with_file", O_RDONLY);
+	fd01 = open("files/bonus_test01_with_lines", O_RDONLY);
+	fd02 = open("files/bonus_test02_with_lines", O_RDONLY);
+	fd03 = open("files/bonus_test03_with_lines", O_RDONLY);
 
 	//FD 01
 	printf("FD01 | First Line | FD return %d\n", get_next_line(fd01, &line));
