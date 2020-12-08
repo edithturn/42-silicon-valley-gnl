@@ -26,21 +26,21 @@ reads from the standard input.
 
 **GNL with files**
 ```bash
-gcc main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c  -I ../
+gcc tests/main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
 ./a.out files/part1_test01_with_lines
 ```
 
 **GNL with standard input (stdin)**
 ```bash
-gcc main_stdin.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c -I ../
+gcc tests/main_stdin.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
 ./a.out
 ```
 
 **GNL Bonus Part**
 ```bash
-gcc main_bonus.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line_bonus.c ../get_next_line_utils_bonus.c -I ../
+gcc tests/main_bonus.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=1 get_next_line_bonus.c get_next_line_utils_bonus.c
 
 ./a.out
 ```
@@ -164,7 +164,7 @@ sudo apt-get install -y valgrind
 ```
 **How to Use?**
 ```bash
-gcc main.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c -I ../
+gcc tests/main.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./a.out files/part1_test01_with_lines
 ```
@@ -175,7 +175,7 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 ### FSANITIZE
 
 ```bash
-gcc main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get_next_line.c ../get_next_line_utils.c -I ../
+gcc tests/main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c -I
 
 ./a.out files/part1_test01_with_lines
 ```
@@ -191,7 +191,7 @@ gcc main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 ../get
 
 ## Debug with lldb and GUI
 ```bash
-gcc -g main.c -Wall -Wextra -Werror -D BUFFER_SIZE=1 ../get_next_line.c ../get_next_line_utils.c -I ../
+gcc -g tests/main.c -Wall -Wextra -Werror -D BUFFER_SIZE=1 get_next_line.c get_next_line_utils.c
 lldb a.out
 b get_next_line
 run files/part1_test01_with_lines

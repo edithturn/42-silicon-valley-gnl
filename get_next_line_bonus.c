@@ -6,7 +6,7 @@
 /*   By: epuclla <epuclla@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 00:25:56 by epuclla           #+#    #+#             */
-/*   Updated: 2020/06/21 19:10:29 by epuclla          ###   ########.fr       */
+/*   Updated: 2020/12/07 19:39:58 by epuclla          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*ptr;
 
 	i = 0;
-	if (s == '\0' || (long int)len < 0)
+	if (!s || (long int)len < 0)
 		return (NULL);
 	ptr = (char *)malloc(len + 1);
 	if (ptr == NULL)
