@@ -166,7 +166,7 @@ sudo apt-get install -y valgrind
 ```bash
 gcc tests/main.c -g -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
-valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./a.out files/part1_test01_with_lines
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./a.out tests/files/part1_test01_with_lines
 ```
 ![alt text](img/valgrind_output.png)
 
@@ -175,9 +175,9 @@ valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
 ### FSANITIZE
 
 ```bash
-gcc tests/main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c -I
+gcc tests/main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c -I 
 
-./a.out files/part1_test01_with_lines
+./a.out tests/files/part1_test01_with_lines
 ```
 ![alt text](img/fsanitize_output.png)
 
@@ -194,7 +194,7 @@ gcc tests/main.c -g3 -fsanitize=address -Wall -Wextra -Werror -D BUFFER_SIZE=32 
 gcc -g tests/main.c -Wall -Wextra -Werror -D BUFFER_SIZE=1 get_next_line.c get_next_line_utils.c
 lldb a.out
 b get_next_line
-run files/part1_test01_with_lines
+run tests/files/part1_test01_with_lines
 gui
 ```
 **:flashlight: keys to move**
