@@ -28,7 +28,7 @@ reads from the standard input.
 ```bash
 gcc tests/main.c -Wall -Wextra -Werror -D BUFFER_SIZE=32 get_next_line.c get_next_line_utils.c
 
-./a.out files/part1_test01_with_lines
+./a.out tests/files/part1_test01_with_lines
 ```
 
 **GNL with standard input (stdin)**

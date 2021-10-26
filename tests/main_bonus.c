@@ -36,6 +36,7 @@ int main()
 	printf("FD03 | Second Line | FD return %d\n", get_next_line(fd03, &line));
 	printf("%s\n\n", line);
 	free(line);
+	
 	printf("FD03 | Third Line | FD return %d\n", get_next_line(fd03, &line));
 	printf("%s\n\n", line);
 	free(line);
